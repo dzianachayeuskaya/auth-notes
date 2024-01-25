@@ -85,7 +85,7 @@ router.get("/:id/download", async (req, res) => {
     await browser.close();
 
     res.setHeader("Content-Type", "application/pdf");
-    res.setHeader("Content-Disposition", `attachment; filename=MyNote_${note.title}.pdf`);
+    res.attachment(`MyNote_${note.title}.pdf`);
     return res.send(pdfBuffer);
   } catch (err) {
     if (typeof err === "number") {
