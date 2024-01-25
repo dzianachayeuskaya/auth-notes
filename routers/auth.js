@@ -4,7 +4,15 @@ const passport = require("passport");
 const GitHubStrategy = require("passport-github").Strategy;
 const LocalStrategy = require("passport-local");
 
-const getPathToEnv = () => ({ path: path.resolve(__dirname, "..", `.env.${process.env.NODE_ENV || "development"}`) });
+const getPathToEnv = () => {
+  const env = process.env.NODE_ENV || "development";
+  console.log("env", env);
+  if (env !== "production") {
+    console.log("path to", path.resolve(__dirname, "..", `.env.${env}`));
+    return { path: path.resolve(__dirname, "..", `.env.${env}`) };
+  }
+  return {};
+};
 
 require("dotenv").config(getPathToEnv());
 
@@ -15,6 +23,7 @@ const { getPath } = require(path.join(__dirname, "..", "utils"));
 
 const { findUserOrCreate, findUserByUsername, createUser } = getPath(["DBMethods", "users"]);
 const { createDemoNote } = getPath(["DBMethods", "notes"]);
+console.log("process.env.HOST", process.env.HOST);
 
 passport.use(
   new GitHubStrategy(
