@@ -74,7 +74,7 @@ router.get("/:id", (req, res) => {
 
 router.get("/:id/download", async (req, res) => {
   try {
-    const browser = await puppeteer.launch({ headless: "new" });
+    const browser = await puppeteer.launch({ args: ["--no-sandbox"], headless: "new" });
     const page = await browser.newPage();
 
     const note = await findNoteFromAuthorizedUser(req);
