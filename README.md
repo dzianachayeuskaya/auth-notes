@@ -19,7 +19,7 @@ npm install
 - запустить проект.
 
 ```bash
-npm start
+npm start:local
 ```
 
 Запуск в режиме разработки:

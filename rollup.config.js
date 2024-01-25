@@ -12,8 +12,7 @@ const replace = require("rollup-plugin-replace");
 const path = require("path");
 const getPathToEnv = () => {
   const env = process.env.NODE_ENV || "development";
-  if (env !== "production") return { path: path.resolve(__dirname, `.env.${env}`) };
-  return {};
+  return { path: path.resolve(__dirname, `.env.${env}`) };
 };
 
 require("dotenv").config(getPathToEnv());
